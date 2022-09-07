@@ -1,9 +1,39 @@
 const API_URL = 'https://api.themoviedb.org/3';
 
-const getTrendingMoviesPreview = async () => {
-  const res = await fetch(`${API_URL}/trending/movie/day?api_key=${API_KEY}`)
-  const {results} = await res.json();
+const api = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8',
+  },
+  params: {
+    'api_key': API_KEY,
+    'language': 'es-Co',
+  }
+})
 
+//Función anterior con Fetch
+// const getTrendingMoviesPreview = async () => {
+//   const res = await fetch(`${API_URL}/trending/movie/day?api_key=${API_KEY}`)
+//   const {results} = await res.json();
+
+//   const divMoviesTrendingPreviewContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
+  
+//   results.forEach(movie => {
+//     const movieContainer = document.createElement('div');
+//     movieContainer.classList.add('movie-container');
+//     const movieImg       = document.createElement('img');
+//     movieImg.classList.add('movie-img');
+//     movieImg.setAttribute('alt', movie.title);
+//     movieImg.setAttribute('src', `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+//     movieContainer.appendChild(movieImg);
+//     divMoviesTrendingPreviewContainer.appendChild(movieContainer)
+//   });
+// };
+
+const getTrendingMoviesPreview = async () => {
+  console.log('aquí')
+  const { data } = await api(`trending/movie/day`);
+  const { results } = data;
   const divMoviesTrendingPreviewContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
   
   results.forEach(movie => {
@@ -16,13 +46,12 @@ const getTrendingMoviesPreview = async () => {
     movieContainer.appendChild(movieImg);
     divMoviesTrendingPreviewContainer.appendChild(movieContainer)
   });
-
-  console.log(results)
 };
 
+
 const getCategoriesMoviesPreview = async () => {
-  const res = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}&language=es-Co`)
-  const {genres} = await res.json();
+  const { data } = await api(`/genre/movie/list?`);
+  const { genres } = data;
 
   const divMoviesCategoriesPreview = document.querySelector('#categoriesPreview .categoriesPreview-list');
   
