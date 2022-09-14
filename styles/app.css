@@ -124,7 +124,7 @@ button {
 
 .header-container--long {
   background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%);
   background-size: cover !important;
   height: 480px;
   position: fixed;
@@ -191,7 +191,9 @@ button {
   overflow-y: hidden;
   white-space: nowrap;
   height: 241px;
-  padding-left: 24px;
+  /* padding-left: 24px; */
+  max-width: 90%;
+  margin: 0 auto;
   padding-bottom: 16px;
 }
 
@@ -321,7 +323,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  width: calc(100vw - 24px);
+  max-width: 87%;
   padding-bottom: 16px;
 }
 
